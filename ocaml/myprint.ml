@@ -24,13 +24,19 @@ let print_exp e =
     | NotEq(e1,e2)    -> binop "NotEq" e1 e2 
     | Greater(e1,e2)  -> binop "Greater" e1 e2 
     | Less(e1,e2)     -> binop "Less" e1 e2 
-    | If(e1,e2,e3)    -> "If" ^ lparen ^ (get_internal e1) ^ ", " ^ (get_internal e2) ^ ", " ^ (get_internal e3) ^ rparen
-    | Let(x,e1,e2)    -> "Let" ^ lparen ^ (string_v x) ^ ", " ^ (get_internal e1 ) ^ ", " ^ (get_internal e2 ) ^ rparen
-    | LetRec(f,x,e1,e2) -> "LetRec" ^ lparen ^ (string_v f) ^ ", " ^ (string_v x) ^ ", " ^ (get_internal e1) ^ ", " ^ (get_internal e2) ^ rparen
-    | Fun(x,e1)       -> "Fun" ^ lparen ^ (string_v x) ^ ", " ^ (get_internal e1) ^ rparen
-    | App(e1,e2)      -> "App" ^ lparen ^ (get_internal e1) ^ ", " ^ (get_internal e2) ^ rparen
+    | If(e1,e2,e3)    -> 
+      "If" ^ lparen ^ (get_internal e1) ^ ", " ^ (get_internal e2) ^ ", " ^ (get_internal e3) ^ rparen
+    | Let(x,e1,e2)    -> 
+      "Let" ^ lparen ^ (string_v x) ^ ", " ^ (get_internal e1 ) ^ ", " ^ (get_internal e2 ) ^ rparen
+    | LetRec(f,x,e1,e2) -> 
+      "LetRec" ^ lparen ^ (string_v f) ^ ", " ^ (string_v x) ^ ", " ^ (get_internal e1) ^ ", " ^ (get_internal e2) ^ rparen
+    | Fun(x,e1)       -> 
+      "Fun" ^ lparen ^ (string_v x) ^ ", " ^ (get_internal e1) ^ rparen
+    | App(e1,e2)      -> 
+      "App" ^ lparen ^ (get_internal e1) ^ ", " ^ (get_internal e2) ^ rparen
     | Empty           -> "Empty"
-    | Cons(e1,e2)     -> "Cons" ^ lparen ^ (get_internal e1) ^ ", " ^ (get_internal e2) ^ rparen
+    | Cons(e1,e2)     -> 
+      "Cons" ^ lparen ^ (get_internal e1) ^ ", " ^ (get_internal e2) ^ rparen
     | Head(e1)        -> "Head" ^ lparen ^ (get_internal e1) ^ rparen
     | Tail(e1)        -> "Tail" ^ lparen ^ (get_internal e1) ^ rparen
     | _ -> failwith "unknown expression"
@@ -69,7 +75,8 @@ let print_instr e =
       | CAM_Ldi(n)        -> "CAM_Ldi" ^ " " ^ (string_of_int n)
       | CAM_Ldb(b)        -> "CAM_Ldb" ^ " " ^ (string_of_bool b)
       | CAM_Access(i)     -> "CAM_Access" ^ " " ^ (string_of_int i)
-      | CAM_Closure(c1)   -> "CAM_Closure" ^ lbra ^ (get_internal_code c1) ^ rbra
+      | CAM_Closure(c1)   -> 
+        "CAM_Closure" ^ lbra ^ (get_internal_code c1) ^ rbra
       | CAM_Apply         -> "CAM_Apply"
       | CAM_Return        -> "CAM_Return"
       | CAM_Let           -> "CAM_Let"
@@ -106,7 +113,8 @@ let print_instrlist e =
         | CAM_Ldi(n)        -> "CAM_Ldi" ^ " " ^ (string_of_int n)
         | CAM_Ldb(b)        -> "CAM_Ldb" ^ " " ^ (string_of_bool b)
         | CAM_Access(i)     -> "CAM_Access" ^ " " ^ (string_of_int i)
-        | CAM_Closure(c1)   -> "CAM_Closure" ^ lbra ^ (get_internal_code c1) ^ rbra
+        | CAM_Closure(c1)   -> 
+          "CAM_Closure" ^ lbra ^ (get_internal_code c1) ^ rbra
         | CAM_Apply         -> "CAM_Apply"
         | CAM_Return        -> "CAM_Return"
         | CAM_Let           -> "CAM_Let"
